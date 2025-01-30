@@ -1,5 +1,5 @@
 # Etapa 1: Construção da aplicação
-FROM node:16 AS build
+FROM node:22 AS build
 
 # Definir diretório de trabalho dentro do container
 WORKDIR /app
@@ -28,7 +28,7 @@ COPY --from=build /app/dist /usr/share/nginx/html
 CMD ["nginx", "-g", "daemon off;"]
 
 # Etapa 3: Servir a aplicação com Vite para o preview em modo desenvolvimento
-FROM node:16 AS preview
+FROM node:22 AS preview
 
 # Definir diretório de trabalho
 WORKDIR /app
