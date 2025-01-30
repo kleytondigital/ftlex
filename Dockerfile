@@ -22,8 +22,7 @@ FROM nginx:alpine AS production
 # Copiar os arquivos de build para o diretório do Nginx
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Expor a porta 80 para acessar a aplicação
-EXPOSE 80
+
 
 # Iniciar o Nginx para servir a aplicação
 CMD ["nginx", "-g", "daemon off;"]
@@ -44,7 +43,7 @@ RUN npm install
 COPY . .
 
 # Expor a porta 5173 para o preview do Vite
-EXPOSE 5173
+EXPOSE 4173
 
 # Rodar o Vite no modo de desenvolvimento (preview)
-CMD ["npm", "run", "preview"]
+CMD ["npm", "run", "preview","--host"]
