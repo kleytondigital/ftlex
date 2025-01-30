@@ -16,17 +16,6 @@ COPY . .
 # Rodar o build da aplicação
 RUN npm run build
 
-# Etapa 2: Servir a aplicação com Nginx para produção
-FROM nginx:alpine AS production
-
-# Copiar os arquivos de build para o diretório do Nginx
-COPY --from=build /app/dist /usr/share/nginx/html
-
-
-
-# Iniciar o Nginx para servir a aplicação
-CMD ["nginx", "-g", "daemon off;"]
-
 # Etapa 3: Servir a aplicação com Vite para o preview em modo desenvolvimento
 FROM node:22 AS preview
 
